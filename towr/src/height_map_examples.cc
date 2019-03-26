@@ -210,4 +210,26 @@ ChimneyLR::GetHeightDerivWrtY (double x, double y) const
   return dzdy;
 }
 
+// STAIRWELL
+double
+Stairwell::GetHeight (double x, double y) const
+{
+  double h = 0.0;
+
+  if (x>=first_step_start_)
+    h = height_first_step;
+
+  if (x>=first_step_start_+width_first_step_)
+    h = height_second_step;
+
+  if (x>=first_step_start_+width_first_step_+width_second_step_)
+    h = height_third_step;
+
+  if (x>=first_step_start_+width_first_step_+width_second_step_+width_third_step_)
+    h = height_fourth_step;
+
+  return h;
+}
+
+
 } /* namespace towr */

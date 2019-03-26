@@ -165,6 +165,21 @@ private:
   const double x_end2_ = x_start_+2*length_;
 };
 
+class Stairwell : public HeightMap {
+public:
+  double GetHeight(double x, double y) const override;
+
+private:
+  double first_step_start_  = 1.0;
+  double height_first_step  = 0.2;
+  double height_second_step = 0.4;
+  double height_third_step = 0.6;
+  double height_fourth_step = 0.8;
+  double width_first_step_  = 0.4;
+  double width_second_step_  = 0.4;
+  double width_third_step_  = 0.4;
+  double width_top = 4.0;
+}; 
 /** @}*/
 
 } /* namespace towr */
