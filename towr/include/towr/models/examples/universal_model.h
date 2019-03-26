@@ -27,8 +27,8 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ******************************************************************************/
 
-#ifndef TOWR_TOWR_ROS_INCLUDE_TOWR_ROS_SPEEDY_MODEL_H_
-#define TOWR_TOWR_ROS_INCLUDE_TOWR_ROS_SPEEDY_MODEL_H_
+#ifndef TOWR_TOWR_ROS_INCLUDE_TOWR_ROS_UNIVERSAL_MODEL_H_
+#define TOWR_TOWR_ROS_INCLUDE_TOWR_ROS_UNIVERSAL_MODEL_H_
 
 #include <towr/models/kinematic_model.h>
 #include <towr/models/single_rigid_body_dynamics.h>
@@ -37,15 +37,15 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 namespace towr {
 
 /**
- * @brief The Kinematics of the quadruped class Speedy.
+ * @brief The Kinematics of the quadruped class Universal.
  */
-class SpeedyKinematicModel : public KinematicModel {
+class UniversalKinematicModel : public KinematicModel {
 public:
-  SpeedyKinematicModel () : KinematicModel(4)
+  UniversalKinematicModel () : KinematicModel(4)
   {
-    const double x_nominal_b = 0.3;
-    const double y_nominal_b = 0.15;
-    const double z_nominal_b = -0.3;
+    const double x_nominal_b = 0.34;
+    const double y_nominal_b = 0.19;
+    const double z_nominal_b = -0.42;
 
     nominal_stance_.at(LF) <<  x_nominal_b,   y_nominal_b, z_nominal_b;
     nominal_stance_.at(RF) <<  x_nominal_b,  -y_nominal_b, z_nominal_b;
@@ -57,11 +57,11 @@ public:
 };
 
 /**
- * @brief The Dynamics of the quadruped class Speedy.
+ * @brief The Dynamics of the quadruped class Universal.
  */
-class SpeedyDynamicModel : public SingleRigidBodyDynamics {
+class UniversalDynamicModel : public SingleRigidBodyDynamics {
 public:
-  SpeedyDynamicModel()
+  UniversalDynamicModel()
   : SingleRigidBodyDynamics(29.5,
                     0.946438, 1.94478, 2.01835, 0.000938112, -0.00595386, -0.00146328,
                     4) {}
@@ -69,4 +69,4 @@ public:
 
 } // namespace towr
 
-#endif /* TOWR_TOWR_ROS_INCLUDE_TOWR_ROS_SPEEDY_MODEL_H_ */
+#endif /* TOWR_TOWR_ROS_INCLUDE_TOWR_ROS_UNIVERSAL_MODEL_H_ */

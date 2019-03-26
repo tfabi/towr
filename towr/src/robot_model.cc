@@ -33,7 +33,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <towr/models/examples/biped_model.h>
 #include <towr/models/examples/hyq_model.h>
 #include <towr/models/examples/anymal_model.h>
+
 #include <towr/models/examples/speedy_model.h>
+#include <towr/models/examples/universal_model.h>
+#include <towr/models/examples/massivo_model.h>
 
 
 namespace towr {
@@ -46,7 +49,7 @@ RobotModel::RobotModel(Robot robot)
       dynamic_model_   = std::make_shared<MonopedDynamicModel>();
       kinematic_model_ = std::make_shared<MonopedKinematicModel>();
       break;
-    case Biped:
+    /*case Biped:
       dynamic_model_   = std::make_shared<BipedDynamicModel>();
       kinematic_model_ = std::make_shared<BipedKinematicModel>();
       break;
@@ -57,9 +60,18 @@ RobotModel::RobotModel(Robot robot)
     case Anymal:
       dynamic_model_   = std::make_shared<AnymalDynamicModel>();
       kinematic_model_ = std::make_shared<AnymalKinematicModel>();
+    */
     case Speedy:
       dynamic_model_   = std::make_shared<SpeedyDynamicModel>();
       kinematic_model_ = std::make_shared<SpeedyKinematicModel>();
+      break;
+    case Universal:
+      dynamic_model_   = std::make_shared<UniversalDynamicModel>();
+      kinematic_model_ = std::make_shared<UniversalKinematicModel>();
+      break;
+    case Massivo:
+      dynamic_model_   = std::make_shared<MassivoDynamicModel>();
+      kinematic_model_ = std::make_shared<MassivoKinematicModel>();
       break;
     default:
       assert(false); // Error: Robot model not implemented.

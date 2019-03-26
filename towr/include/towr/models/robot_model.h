@@ -68,10 +68,12 @@ struct RobotModel {
    * @ingroup Robots
    */
   enum Robot { Monoped, ///< one-legged hopper
-               Biped,   ///< two-legged
+               /*Biped,   ///< two-legged
                Hyq,     ///< four-legged robot from IIT
-               Anymal,  ///< four-legged robot from Anybotics
+               Anymal,*/  ///< four-legged robot from Anybotics
 	       Speedy,  ///< agile four-legged robot class
+               Universal, ///< versatile four-legged robot
+	       Massivo,    ///< heavy payload-carrying four-legged robot
                ROBOT_COUNT };
 
 
@@ -86,10 +88,12 @@ struct RobotModel {
 const static std::map<RobotModel::Robot, std::string> robot_names =
 {
   {RobotModel::Monoped, "Monoped"},
-  {RobotModel::Biped,   "Biped"},
+  /*{RobotModel::Biped,   "Biped"},
   {RobotModel::Hyq,     "Hyq"},
-  {RobotModel::Anymal,  "Anymal"}
-  {RobotModel::Speedy,  "Speedy"}
+  {RobotModel::Anymal,  "Anymal"},*/
+  {RobotModel::Speedy,  "Speedy"},
+  {RobotModel::Universal, "Universal"},
+  {RobotModel::Massivo, "Massivo"},
 };
 
 } /* namespace towr */
