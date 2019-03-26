@@ -80,7 +80,7 @@ private:
   double first_step_width_  = 0.4;
   double height_first_step  = 0.2;
   double height_second_step = 0.4;
-  double width_top = 1.0;
+  double width_top = 4.0;
 };
 
 /**

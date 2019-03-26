@@ -52,7 +52,7 @@ public:
     nominal_stance_.at(LH) << -x_nominal_b,   y_nominal_b, z_nominal_b;
     nominal_stance_.at(RH) << -x_nominal_b,  -y_nominal_b, z_nominal_b;
 
-    max_dev_from_nominal_ << 0.15, 0.1, 0.10;
+    max_dev_from_nominal_ << 0.1071, 0.0714, 0.0714;
   }
 };
 
@@ -62,7 +62,7 @@ public:
 class SpeedyDynamicModel : public SingleRigidBodyDynamics {
 public:
   SpeedyDynamicModel()
-  : SingleRigidBodyDynamics(29.5,
+  : SingleRigidBodyDynamics(20,
                     0.946438, 1.94478, 2.01835, 0.000938112, -0.00595386, -0.00146328,
                     4) {}
 };

@@ -45,14 +45,14 @@ public:
   {
     const double x_nominal_b = 0.5;
     const double y_nominal_b = 0.3;
-    const double z_nominal_b = -0.8;
+    const double z_nominal_b = -0.7;
 
     nominal_stance_.at(LF) <<  x_nominal_b,   y_nominal_b, z_nominal_b;
     nominal_stance_.at(RF) <<  x_nominal_b,  -y_nominal_b, z_nominal_b;
     nominal_stance_.at(LH) << -x_nominal_b,   y_nominal_b, z_nominal_b;
     nominal_stance_.at(RH) << -x_nominal_b,  -y_nominal_b, z_nominal_b;
 
-    max_dev_from_nominal_ << 0.15, 0.1, 0.10;
+    max_dev_from_nominal_ << 0.25, 0.167, 0.167;
   }
 };
 
@@ -62,8 +62,8 @@ public:
 class MassivoDynamicModel : public SingleRigidBodyDynamics {
 public:
   MassivoDynamicModel()
-  : SingleRigidBodyDynamics(29.5,
-                    0.946438, 1.94478, 2.01835, 0.000938112, -0.00595386, -0.00146328,
+  : SingleRigidBodyDynamics(125,
+                    4*0.946438, 4*1.94478, 4*2.01835, 4*0.000938112, 4*-0.00595386, 4*-0.00146328,
                     4) {}
 };
 
