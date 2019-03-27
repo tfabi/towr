@@ -66,11 +66,12 @@ public:
 
     // Instead of manually defining the initial durations for each foot and
     // step, for convenience we use a GaitGenerator with some predefined gaits
-    // for a variety of robots (walk, trot, pace, ...).
+    // for a variety of robots (walk, trot, pace, ...). THIS IS WHERE I CAN ADAPT THE NUMBER OF STEPS. THE SIZE OF PHASE DURATIONS IS THE SETP COUNT
     auto gait_gen_ = GaitGenerator::MakeGaitGenerator(n_ee);
     auto id_gait   = static_cast<GaitGenerator::Combos>(msg.gait);
     gait_gen_->SetCombo(id_gait);
     for (int ee=0; ee<n_ee; ++ee) {
+      //params.ee_phase_durations_.at(ee).{0.4, 0.2, 0.4, 0.2, 0.4, 0.2, 0.2, 0.4, 0.2, 0.4, 0.2, 0.4, 0.2, 0.2});
       params.ee_phase_durations_.push_back(gait_gen_->GetPhaseDurations(msg.total_duration, ee));
       params.ee_in_contact_at_start_.push_back(gait_gen_->IsInContactAtStart(ee));
     }
@@ -80,6 +81,7 @@ public:
 
     // increases optimization time, but sometimes helps find a solution for
     // more difficult terrain.
+
     if (msg.optimize_phase_durations)
       params.OptimizePhaseDurations();
 

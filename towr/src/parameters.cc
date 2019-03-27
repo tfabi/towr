@@ -100,7 +100,7 @@ Parameters::GetBasePolyDurations () const
 int
 Parameters::GetPhaseCount(EEID ee) const
 {
-  return ee_phase_durations_.at(ee).size();
+    return ee_phase_durations_.at(ee).size();
 }
 
 int

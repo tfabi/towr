@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
 
   // write the message with modified timestamp into new bag file
   rosbag::Bag bag_w;
-  bag_w.open("/home/winklera/Desktop/matlab_rdy.bag", rosbag::bagmode::Write);
+  bag_w.open("/home/michael/Documents/matlab_rdy.bag", rosbag::bagmode::Write);
 
   BOOST_FOREACH(rosbag::MessageInstance const m, view)
   {

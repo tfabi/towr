@@ -9,7 +9,7 @@ clc;
 clear all;
 
 %% Extract the desired 3D vectors from the bag
-filePath = '~/Desktop/matlab_rdy.bag';
+filePath = '~/Documents/thesis/towr_trajectory.bag';
 bag_all = rosbag(filePath);
 
 t0 = 0.0; %bag_all.StartTime;
