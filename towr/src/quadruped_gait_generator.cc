@@ -85,6 +85,7 @@ QuadrupedGaitGenerator::SetCombo (Combos combo)
     case C4: SetGaits({Stand, Hop3, Hop3, Hop3, Hop3E, Stand}); break; // gallop
     default: assert(false); std::cout << "Gait not defined\n"; break;
   }
+
 }
 
 QuadrupedGaitGenerator::GaitInfo
@@ -365,5 +366,6 @@ QuadrupedGaitGenerator::GetStrideLimp () const
 
   return std::make_pair(times, phase_contacts);
 }
+
 
 } /* namespace towr */

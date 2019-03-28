@@ -45,7 +45,7 @@ namespace towr {
 
 enum YCursorRows {HEADING=6, OPTIMIZE=8, VISUALIZE, INITIALIZATION, PLOT,
                   REPLAY_SPEED, GOAL_POS, GOAL_ORI, ROBOT,
-                  GAIT, OPTIMIZE_GAIT, TERRAIN, DURATION, CLOSE, END};
+                  GAIT, OPTIMIZE_GAIT, TERRAIN, DURATION, CLOSE, GAIT_DESCRIPTIONS=5, END};
 static constexpr int Y_STATUS      = END+1;
 static constexpr int X_KEY         = 1;
 static constexpr int X_DESCRIPTION = 10;
@@ -183,6 +183,8 @@ TowrUserInterface::PrintScreen() const
   printw("Close user interface");
   wmove(stdscr, CLOSE, X_VALUE);
   printw("-");
+
+  printw("\n\n Gait 0: overlap walk \n      1: flying trot \n      2: pace \n      3: bound \n      4: gallop \n"); 
 }
 
 void
@@ -295,6 +297,10 @@ TowrUserInterface::CallbackKey (int c)
 
 void TowrUserInterface::PublishCommand()
 {
+
+std::string gait_names[] = {"overlap walk", "flying trot", "pace", "bound", "gallop"};
+
+
   towr_ros::TowrCommand msg;
   msg.goal_lin                 = xpp::Convert::ToRos(goal_geom_.lin);
   msg.goal_ang                 = xpp::Convert::ToRos(goal_geom_.ang);

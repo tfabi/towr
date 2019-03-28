@@ -71,7 +71,6 @@ public:
     auto id_gait   = static_cast<GaitGenerator::Combos>(msg.gait);
     gait_gen_->SetCombo(id_gait);
     for (int ee=0; ee<n_ee; ++ee) {
-      //params.ee_phase_durations_.at(ee).{0.4, 0.2, 0.4, 0.2, 0.4, 0.2, 0.2, 0.4, 0.2, 0.4, 0.2, 0.4, 0.2, 0.2});
       params.ee_phase_durations_.push_back(gait_gen_->GetPhaseDurations(msg.total_duration, ee));
       params.ee_in_contact_at_start_.push_back(gait_gen_->IsInContactAtStart(ee));
     }
@@ -109,7 +108,7 @@ public:
     // deviation of 10e-4, which is fine. What to watch out for is deviations > 10e-2.
     // solver_->SetOption("derivative_test", "first-order");
 
-    solver_->SetOption("max_cpu_time", 40.0);
+    solver_->SetOption("max_cpu_time", 80.0);
     solver_->SetOption("print_level", 5);
 
     if (msg.play_initialization)
