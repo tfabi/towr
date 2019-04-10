@@ -45,7 +45,7 @@ public:
   {
     const double x_nominal_b = 0.34;
     const double y_nominal_b = 0.19;
-    const double z_nominal_b = -0.42;
+    const double z_nominal_b = -0.46;
 
     nominal_stance_.at(LF) <<  x_nominal_b,   y_nominal_b, z_nominal_b;
     nominal_stance_.at(RF) <<  x_nominal_b,  -y_nominal_b, z_nominal_b;
@@ -62,8 +62,8 @@ public:
 class UniversalDynamicModel : public SingleRigidBodyDynamics {
 public:
   UniversalDynamicModel()
-  : SingleRigidBodyDynamics(29.5,
-                    0.946438, 1.94478, 2.01835, 0.000938112, -0.00595386, -0.00146328,
+  : SingleRigidBodyDynamics(29.53,
+                    0.69961, 2.73585, 2.23254, 0, 0, 0,
                     4) {}
 };
 

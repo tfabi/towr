@@ -71,6 +71,7 @@ struct RobotModel {
                /*Biped,   ///< two-legged
                Hyq,     ///< four-legged robot from IIT
                Anymal,*/  ///< four-legged robot from Anybotics
+	       Mini,    ///< small test platform quadruped
 	       Speedy,  ///< agile four-legged robot class
                Universal, ///< versatile four-legged robot
 	       Massivo,    ///< heavy payload-carrying four-legged robot
@@ -91,6 +92,7 @@ const static std::map<RobotModel::Robot, std::string> robot_names =
   /*{RobotModel::Biped,   "Biped"},
   {RobotModel::Hyq,     "Hyq"},
   {RobotModel::Anymal,  "Anymal"},*/
+  {RobotModel::Mini, "Mini"},
   {RobotModel::Speedy,  "Speedy"},
   {RobotModel::Universal, "Universal"},
   {RobotModel::Massivo, "Massivo"},

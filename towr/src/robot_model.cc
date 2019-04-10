@@ -34,6 +34,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <towr/models/examples/hyq_model.h>
 #include <towr/models/examples/anymal_model.h>
 
+#include <towr/models/examples/mini_model.h>
 #include <towr/models/examples/speedy_model.h>
 #include <towr/models/examples/universal_model.h>
 #include <towr/models/examples/massivo_model.h>
@@ -61,6 +62,10 @@ RobotModel::RobotModel(Robot robot)
       dynamic_model_   = std::make_shared<AnymalDynamicModel>();
       kinematic_model_ = std::make_shared<AnymalKinematicModel>();
     */
+    case Mini:
+      dynamic_model_   = std::make_shared<MiniDynamicModel>();
+      kinematic_model_ = std::make_shared<MiniKinematicModel>();
+      break;
     case Speedy:
       dynamic_model_   = std::make_shared<SpeedyDynamicModel>();
       kinematic_model_ = std::make_shared<SpeedyKinematicModel>();

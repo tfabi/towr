@@ -30,7 +30,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <iostream>
 #include <string>
 #include <vector>
-
+#include <ros/ros.h>
 #include <rosbag/bag.h>
 #include <rosbag/view.h>
 #include <rosbag/message_instance.h>
@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
 
   // write the message with modified timestamp into new bag file
   rosbag::Bag bag_w;
-  bag_w.open("/home/michael/Documents/matlab_rdy.bag", rosbag::bagmode::Write);
+  bag_w.open("/home/michael/Documents/thesis/matlab_rdy.bag", rosbag::bagmode::Write);
 
   BOOST_FOREACH(rosbag::MessageInstance const m, view)
   {
@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
     bag_w.write("base_acc", t, state_msg->base.accel.linear);
 
     int n_feet = state_msg->ee_motion.size();
-
+    ROS_INFO_STREAM("number of feet: " << n_feet);
     for (int i=0; i<n_feet; ++i) {
       bag_w.write("foot_pos_"+std::to_string(i), t, state_msg->ee_motion.at(i).pos);
       bag_w.write("foot_force_"+std::to_string(i), t, state_msg->ee_forces.at(i));

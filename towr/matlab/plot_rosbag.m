@@ -9,7 +9,7 @@ clc;
 clear all;
 
 %% Extract the desired 3D vectors from the bag
-filePath = '~/Documents/thesis/towr_trajectory.bag';
+filePath = '~/Documents/thesis/matlab_rdy.bag';
 bag_all = rosbag(filePath);
 
 t0 = 0.0; %bag_all.StartTime;
@@ -32,12 +32,24 @@ ts_foot_0 = timeseries(bag_foot_0, 'Z');
 bag_foot_1 = select(bag, 'Topic', 'foot_pos_1');
 ts_foot_1 = timeseries(bag_foot_1, 'Z');
 
+bag_foot_2 = select(bag, 'Topic', 'foot_pos_2');
+ts_foot_2 = timeseries(bag_foot_2, 'Z');
+
+bag_foot_3 = select(bag, 'Topic', 'foot_pos_3');
+ts_foot_3 = timeseries(bag_foot_3, 'Z');
+
 % endeffector forces
 bag_force_0 = select(bag, 'Topic', 'foot_force_0');
 ts_force_0 = timeseries(bag_force_0, 'Z');
 
 bag_force_1 = select(bag, 'Topic', 'foot_force_1');
 ts_force_1  = timeseries(bag_force_1, 'Z');
+
+bag_force_2 = select(bag, 'Topic', 'foot_force_2');
+ts_force_2  = timeseries(bag_force_2, 'Z');
+
+bag_force_3 = select(bag, 'Topic', 'foot_force_3');
+ts_force_3  = timeseries(bag_force_3, 'Z');
 
 
 %% define the plotting range and other additional quantities
@@ -54,10 +66,14 @@ base_zdd = ts_base_acc.Data(:,1);
 % foot motion
 foot_0_z = ts_foot_0.Data(:,1);
 foot_1_z = ts_foot_1.Data(:,1);
+foot_2_z = ts_foot_2.Data(:,1);
+foot_3_z = ts_foot_3.Data(:,1);
 
 % foot force
 force_0_z = ts_force_0.Data(:,1);
 force_1_z = ts_force_1.Data(:,1);
+force_2_z = ts_force_2.Data(:,1);
+force_3_z = ts_force_3.Data(:,1);
 
 
 % calculate RMSE between base-z acceleration and what should be the 
@@ -77,15 +93,21 @@ dt_dyn = 0.2;
 
 spline_durations_f0 = [0.25 0.45 0.34 0.35 0.63 0.13 0.50 0.12 0.56 0.40];
 spline_durations_f1 = [0.62 0.41 0.59 0.14 0.39 0.13 0.78 0.36 0.23 0.46];
+spline_durations_f2 = [0.25 0.45 0.34 0.35 0.63 0.13 0.50 0.12 0.56 0.40];
+spline_durations_f3 = [0.62 0.41 0.59 0.14 0.39 0.13 0.78 0.36 0.23 0.46];
 
 % create vector with absolute timings
 num_phases   = size(spline_durations_f0, 2);
 dt_foot_0    = spline_durations_f0;
 dt_foot_1    = spline_durations_f1;
+dt_foot_2    = spline_durations_f2;
+dt_foot_3    = spline_durations_f3;
 
 for c = 2:num_phases
   dt_foot_0(1,c) = dt_foot_0(c-1) + spline_durations_f0(c);
   dt_foot_1(1,c) = dt_foot_1(c-1) + spline_durations_f1(c);
+  dt_foot_2(1,c) = dt_foot_2(c-1) + spline_durations_f2(c);
+  dt_foot_3(1,c) = dt_foot_3(c-1) + spline_durations_f3(c);
 end
 
 
@@ -98,6 +120,8 @@ plot(t,base_zdd_dynamics, 'k--'); hold on;
 xlim([t0 T]);
 sp1.XGrid = 'on';
 sp1.XTick = [t0:dt_dyn:T];
+xlabel('time [s]');
+ylabel('base acceleration [m/s^2]');
 
 
 sp2 = subplot(3,1,2);
@@ -108,6 +132,11 @@ set(he0t(2),'YLim',[-80 600]);
 set(he0t(2),'YTick',[-200:200:600]);
 sp2.XGrid = 'on';
 sp2.XTick = dt_foot_0;
+xlabel('time [s]');
+ylabel('foot position [m]');
+yyaxis right
+ylabel('force [N]')
+
 
 
 sp3 = subplot(3,1,3);
@@ -115,37 +144,33 @@ sp3 = subplot(3,1,3);
 set(he1t(1),'XLim',[t0 T]);
 set(he1t(2),'XLim',[t0 T]);
 set(he1t(2),'YLim',[-80 600]);
-set(he1t(2),'YTick',[-200:200:600]);
+set(he1t(2),'YTick',[-200:200:600]); 
 sp3.XGrid = 'on';
 sp3.XTick = dt_foot_1;
+xlabel('time [s]');
+yyaxis right
+ylabel('force [N]')
 
-
+figure(2);
+subplot(4,1,1);
+plot(t, foot_0_z);
+subplot(4,1,2);
+plot(t, foot_1_z);
+subplot(4,1,3);
+plot(t, foot_2_z);
+subplot(4,1,4);
+plot(t, foot_3_z);
 
 %%  Generate pdf from the figure for paper
-width  = 20;
-height = 15;
-
-fh.Units = 'centimeters';
-fh.PaperUnits = 'centimeters';
-fh.Position = [0, 0, width, height];
-fh.PaperSize = [width, height];
-fh.PaperPositionMode = 'auto';
-fn = 'side_stepping';
-
-saveas(fh, fn, 'pdf')
-system(['pdfcrop ' fn ' ' fn]);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+% width  = 20;
+% height = 15;
+% 
+% fh.Units = 'centimeters';
+% fh.PaperUnits = 'centimeters';
+% fh.Position = [0, 0, width, height];
+% fh.PaperSize = [width, height];
+% fh.PaperPositionMode = 'auto';
+% fn = 'side_stepping';
+% 
+% saveas(fh, fn, 'pdf')
+% system(['pdfcrop ' fn ' ' fn]);

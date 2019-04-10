@@ -43,16 +43,16 @@ class MassivoKinematicModel : public KinematicModel {
 public:
   MassivoKinematicModel () : KinematicModel(4)
   {
-    const double x_nominal_b = 0.5;
+    const double x_nominal_b = 0.262;
     const double y_nominal_b = 0.3;
-    const double z_nominal_b = -0.7;
+    const double z_nominal_b = -0.72;
 
     nominal_stance_.at(LF) <<  x_nominal_b,   y_nominal_b, z_nominal_b;
     nominal_stance_.at(RF) <<  x_nominal_b,  -y_nominal_b, z_nominal_b;
     nominal_stance_.at(LH) << -x_nominal_b,   y_nominal_b, z_nominal_b;
     nominal_stance_.at(RH) << -x_nominal_b,  -y_nominal_b, z_nominal_b;
 
-    max_dev_from_nominal_ << 0.25, 0.167, 0.167;
+    max_dev_from_nominal_ << 0.08, 0.1, 0.2;
   }
 };
 
@@ -62,8 +62,8 @@ public:
 class MassivoDynamicModel : public SingleRigidBodyDynamics {
 public:
   MassivoDynamicModel()
-  : SingleRigidBodyDynamics(125,
-                    4*0.946438, 4*1.94478, 4*2.01835, 4*0.000938112, 4*-0.00595386, 4*-0.00146328,
+  : SingleRigidBodyDynamics(216,
+                    10.4982254318, 13.373983413, 12.332446330, 0, 0, 0,
                     4) {}
 };
 
