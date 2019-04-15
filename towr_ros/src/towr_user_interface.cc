@@ -184,7 +184,7 @@ TowrUserInterface::PrintScreen() const
   wmove(stdscr, CLOSE, X_VALUE);
   printw("-");
 
-  printw("\n\n Gait 0: overlap walk \n      1: flying trot \n      2: pace \n      3: bound \n      4: gallop \n"); 
+  printw("\n\n Gait 0: overlap walk 21 phases \n      1: flying trot 21 phases \n      2: pace \n      3: bound \n      4: gallop 42 phases \n     5: trot 21 phases \n        6: overlap walk 6 phases \n"); 
 }
 
 void

@@ -45,7 +45,7 @@ public:
   {
     const double x_nominal_b = 0.31;
     const double y_nominal_b = 0.1; //fore-legs
-    const double z_nominal_b = -0.304;
+    const double z_nominal_b = -0.304*1.5;
 
     const double lateral_offset = 0.04;
 
@@ -54,7 +54,7 @@ public:
     nominal_stance_.at(LH) << -x_nominal_b,   y_nominal_b + lateral_offset, z_nominal_b;
     nominal_stance_.at(RH) << -x_nominal_b,  -(y_nominal_b + lateral_offset), z_nominal_b;
 
-    max_dev_from_nominal_ << 0.15, 0.09, 0.091;
+    max_dev_from_nominal_ << 3*0.15, 3*0.09, 0.2;
   }
 };
 

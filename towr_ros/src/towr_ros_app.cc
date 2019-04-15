@@ -66,7 +66,8 @@ public:
 
     // Instead of manually defining the initial durations for each foot and
     // step, for convenience we use a GaitGenerator with some predefined gaits
-    // for a variety of robots (walk, trot, pace, ...). THIS IS WHERE I CAN ADAPT THE NUMBER OF STEPS. THE SIZE OF PHASE DURATIONS IS THE SETP COUNT
+    // for a variety of robots (walk, trot, pace, ...).
+
     auto gait_gen_ = GaitGenerator::MakeGaitGenerator(n_ee);
     auto id_gait   = static_cast<GaitGenerator::Combos>(msg.gait);
     gait_gen_->SetCombo(id_gait);
@@ -108,7 +109,7 @@ public:
     // deviation of 10e-4, which is fine. What to watch out for is deviations > 10e-2.
     // solver_->SetOption("derivative_test", "first-order");
 
-    solver_->SetOption("max_cpu_time", 80.0);
+    solver_->SetOption("max_cpu_time", 30.0);
     solver_->SetOption("print_level", 5);
 
     if (msg.play_initialization)

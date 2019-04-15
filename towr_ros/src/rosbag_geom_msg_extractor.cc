@@ -76,12 +76,14 @@ int main(int argc, char *argv[])
     auto state_msg = m.instantiate<xpp_msgs::RobotStateCartesian>();
     bag_w.write("base_pose", t, state_msg->base.pose);
     bag_w.write("base_acc", t, state_msg->base.accel.linear);
+    bag_w.write("base_twist", t, state_msg->base.twist);
 
     int n_feet = state_msg->ee_motion.size();
-    ROS_INFO_STREAM("number of feet: " << n_feet);
+    
     for (int i=0; i<n_feet; ++i) {
       bag_w.write("foot_pos_"+std::to_string(i), t, state_msg->ee_motion.at(i).pos);
       bag_w.write("foot_force_"+std::to_string(i), t, state_msg->ee_forces.at(i));
+
     }
   }
 

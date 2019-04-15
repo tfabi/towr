@@ -37,6 +37,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <towr/models/examples/mini_model.h>
 #include <towr/models/examples/speedy_model.h>
 #include <towr/models/examples/universal_model.h>
+#include <towr/models/examples/universalpayload_model.h>
 #include <towr/models/examples/massivo_model.h>
 
 
@@ -73,6 +74,10 @@ RobotModel::RobotModel(Robot robot)
     case Universal:
       dynamic_model_   = std::make_shared<UniversalDynamicModel>();
       kinematic_model_ = std::make_shared<UniversalKinematicModel>();
+      break;
+    case UniversalPayload:
+      dynamic_model_   = std::make_shared<UniversalPayloadDynamicModel>();
+      kinematic_model_ = std::make_shared<UniversalPayloadKinematicModel>();
       break;
     case Massivo:
       dynamic_model_   = std::make_shared<MassivoDynamicModel>();

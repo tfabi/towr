@@ -27,8 +27,8 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ******************************************************************************/
 
-#ifndef TOWR_TOWR_ROS_INCLUDE_TOWR_ROS_MASSIVO_MODEL_H_
-#define TOWR_TOWR_ROS_INCLUDE_TOWR_ROS_MASSIVO_MODEL_H_
+#ifndef TOWR_TOWR_ROS_INCLUDE_TOWR_ROS_UNIVERSALPAYLOAD_MODEL_H_
+#define TOWR_TOWR_ROS_INCLUDE_TOWR_ROS_UNIVERSALPAYLOAD_MODEL_H_
 
 #include <towr/models/kinematic_model.h>
 #include <towr/models/single_rigid_body_dynamics.h>
@@ -37,36 +37,36 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 namespace towr {
 
 /**
- * @brief The Kinematics of the quadruped class Massivo.
+ * @brief The Kinematics of the quadruped class UniversalPayload.
  */
-class MassivoKinematicModel : public KinematicModel {
+class UniversalPayloadKinematicModel : public KinematicModel {
 public:
-  MassivoKinematicModel () : KinematicModel(4)
+  UniversalPayloadKinematicModel () : KinematicModel(4)
   {
-    const double x_nominal_b = 0.262;
-    const double y_nominal_b = 0.3;
-    const double z_nominal_b = -0.72;
+    const double x_nominal_b = 0.34;
+    const double y_nominal_b = 0.19;
+    const double z_nominal_b = -0.566;
 
     nominal_stance_.at(LF) <<  x_nominal_b,   y_nominal_b, z_nominal_b;
     nominal_stance_.at(RF) <<  x_nominal_b,  -y_nominal_b, z_nominal_b;
     nominal_stance_.at(LH) << -x_nominal_b,   y_nominal_b, z_nominal_b;
     nominal_stance_.at(RH) << -x_nominal_b,  -y_nominal_b, z_nominal_b;
 
-    max_dev_from_nominal_ << 0.18, 0.1, 0.2;
+    max_dev_from_nominal_ << 0.15, 0.1, 0.1;
   }
 };
 
 /**
- * @brief The Dynamics of the quadruped class Massivo.
+ * @brief The Dynamics of the quadruped class UniversalPayload.
  */
-class MassivoDynamicModel : public SingleRigidBodyDynamics {
+class UniversalPayloadDynamicModel : public SingleRigidBodyDynamics {
 public:
-  MassivoDynamicModel()
-  : SingleRigidBodyDynamics(216,
-                    10.4982254318, 13.373983413, 12.332446330, 0, 0, 0,
+  UniversalPayloadDynamicModel()
+  : SingleRigidBodyDynamics(39.53,
+                    1.29148992014, 2.7358465252, 2.2325430306, 0, 0, 0,
                     4) {}
 };
 
 } // namespace towr
 
-#endif /* TOWR_TOWR_ROS_INCLUDE_TOWR_ROS_MASSIVO_MODEL_H_ */
+#endif /* TOWR_TOWR_ROS_INCLUDE_TOWR_ROS_UNIVERSALPAYLOAD_MODEL_H_ */

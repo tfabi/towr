@@ -46,6 +46,7 @@ HeightMap::MakeTerrain (TerrainID type)
     case ChimneyID:   return std::make_shared<Chimney>(); break;
     case ChimneyLRID: return std::make_shared<ChimneyLR>(); break;
     case StairwellID:    return std::make_shared<Stairwell>(); break;
+    case VersatileID:    return std::make_shared<Versatile>(); break;
     default: assert(false); break;
   }
 }

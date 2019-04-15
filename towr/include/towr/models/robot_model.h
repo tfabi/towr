@@ -73,7 +73,8 @@ struct RobotModel {
                Anymal,*/  ///< four-legged robot from Anybotics
 	       Mini,    ///< small test platform quadruped
 	       Speedy,  ///< agile four-legged robot class
-               Universal, ///< versatile four-legged robot
+               Universal,
+               UniversalPayload, ///< versatile four-legged robot
 	       Massivo,    ///< heavy payload-carrying four-legged robot
                ROBOT_COUNT };
 
@@ -95,6 +96,7 @@ const static std::map<RobotModel::Robot, std::string> robot_names =
   {RobotModel::Mini, "Mini"},
   {RobotModel::Speedy,  "Speedy"},
   {RobotModel::Universal, "Universal"},
+  {RobotModel::UniversalPayload, "UniversalPayload"},
   {RobotModel::Massivo, "Massivo"},
 };
 
