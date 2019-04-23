@@ -76,6 +76,7 @@ struct RobotModel {
                Universal,
                UniversalPayload, ///< versatile four-legged robot
 	       Massivo,    ///< heavy payload-carrying four-legged robot
+	       Centaur,    ///< heavy payload at front of robot
                ROBOT_COUNT };
 
 
@@ -98,6 +99,7 @@ const static std::map<RobotModel::Robot, std::string> robot_names =
   {RobotModel::Universal, "Universal"},
   {RobotModel::UniversalPayload, "UniversalPayload"},
   {RobotModel::Massivo, "Massivo"},
+  {RobotModel::Centaur, "Centaur"},
 };
 
 } /* namespace towr */

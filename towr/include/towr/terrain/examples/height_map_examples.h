@@ -172,12 +172,20 @@ public:
 private:
   double first_step_start_  = 1.0;
   double height_first_step  = 0.17;
-  double height_second_step = 0.34;
-  double height_third_step = 0.51;
-  double height_fourth_step = 0.68;
+  double height_second_step = 2*0.17;
+  double height_third_step = 3*0.17;
+  double height_fourth_step = 4*0.17;
+  double height_fifth_step = 5*0.17;
+  double height_sixth_step = 6*0.17;
+  double height_seventh_step = 7*0.17;
+
   double width_first_step_  = 0.28;
   double width_second_step_  = 0.28;
   double width_third_step_  = 0.28;
+  double width_fourth_step_  = 0.28;
+  double width_fifth_step_  = 0.28;
+  double width_sixth_step_  = 0.28;
+
   double width_top = 4.0;
 }; 
 
@@ -187,32 +195,7 @@ public:
 	double GetHeightDerivWrtX(double x, double y) const override;
 
 private:
-/*
-  double first_step_slope_start_ = 0.4;
-  double first_step_slope_end_ = 0.41;
 
-  double first_step_start_  = 0.5;
-  double height_first_step  = 0.17;
-  double height_second_step = 0.34;
-  double width_first_step_  = 0.28;
-  double width_second_step_  = 0.28;
-  const double slope_up_start_ = first_step_start_ + width_first_step_ + width_second_step_;
-  const double up_length_   = 0.6;
-  const double slope_height_ = 0.2;
-  const double down_length_ = 0.6;
-  double x_flat_width_ = 0.5;
-
-  const double height_center = height_first_step + height_second_step + slope_height_;
-  const double x_flat_start_ = slope_up_start_ + up_length_;
-  const double slope_down_start_ = x_flat_start_ + x_flat_width_;
-  const double slope_up_ = slope_height_/up_length_;
-  const double slope_down_ = -slope_height_/down_length_;
-
-
-  const double third_step_start_ = slope_down_start_ + down_length_;
-  const double fourth_step_start_ = third_step_start_ + width_first_step_;
-
-*/
 	double wall_slope_ = 10;
     double step_height_ = 0.28;
     double step_width_ = 0.17;

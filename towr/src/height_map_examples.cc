@@ -228,6 +228,12 @@ Stairwell::GetHeight (double x, double y) const
   if (x>=first_step_start_+width_first_step_+width_second_step_+width_third_step_)
     h = height_fourth_step;
 
+  if (x>=first_step_start_+width_first_step_+width_second_step_+width_third_step_+width_fourth_step_)
+    h = height_fifth_step;
+
+  if (x>=first_step_start_+width_first_step_+width_second_step_+width_third_step_+width_fourth_step_+width_fifth_step_)
+      h = height_sixth_step;
+
   return h;
 }
 
@@ -244,32 +250,6 @@ Versatile::GetHeight (double x, double y) const
 	  z = flat_1_height_;
 
 
-  /*
-    if(first_step_slope_start_ <= x && x <= first_step_slope_end_)
-	z = 10*(x - first_step_slope_start_);
-
-   if (x >=first_step_start_)
-    // z = height_first_step;
-	 z = 10*(x - (first_step_start_ -0.01));
-
-   if (x>=first_step_start_+width_first_step_)
-     z = height_second_step;
-
-   if (slope_up_start_ <=x && x<= x_flat_start_)
-     z = height_second_step + slope_up_*(x-slope_up_start_);
-
-   if (x > x_flat_start_)
-       z = height_center;
-
-   if (slope_down_start_ <=x && x<= third_step_start_)
-        z = height_center + slope_down_*(x-slope_down_start_);
-
-   if (x >= third_step_start_)
-       z = height_second_step;
-
-   if (x>=fourth_step_start_)
-       z = height_first_step;
-*/
   return z;
 }
 

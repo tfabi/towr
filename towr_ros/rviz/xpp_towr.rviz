@@ -184,7 +184,7 @@ Visualization Manager:
         Stereo Eye Separation: 0.06
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
-        Value: false
+        Value: true
       Focal Point:
         X: 0.814757
         Y: -0.123521

@@ -39,6 +39,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <towr/models/examples/universal_model.h>
 #include <towr/models/examples/universalpayload_model.h>
 #include <towr/models/examples/massivo_model.h>
+#include <towr/models/examples/centaur_model.h>
 
 
 namespace towr {
@@ -82,6 +83,10 @@ RobotModel::RobotModel(Robot robot)
     case Massivo:
       dynamic_model_   = std::make_shared<MassivoDynamicModel>();
       kinematic_model_ = std::make_shared<MassivoKinematicModel>();
+      break;
+    case Centaur:
+      dynamic_model_   = std::make_shared<CentaurDynamicModel>();
+      kinematic_model_ = std::make_shared<CentaurKinematicModel>();
       break;
     default:
       assert(false); // Error: Robot model not implemented.

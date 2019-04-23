@@ -27,8 +27,8 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ******************************************************************************/
 
-#ifndef TOWR_TOWR_ROS_INCLUDE_TOWR_ROS_SPEEDY_MODEL_H_
-#define TOWR_TOWR_ROS_INCLUDE_TOWR_ROS_SPEEDY_MODEL_H_
+#ifndef TOWR_TOWR_ROS_INCLUDE_TOWR_ROS_CENTAUR_MODEL_H_
+#define TOWR_TOWR_ROS_INCLUDE_TOWR_ROS_CENTAUR_MODEL_H_
 
 #include <towr/models/kinematic_model.h>
 #include <towr/models/single_rigid_body_dynamics.h>
@@ -37,38 +37,37 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 namespace towr {
 
 /**
- * @brief The Kinematics of the quadruped class Speedy.
+ * @brief The Kinematics of the quadruped class Centaur.
  */
-class SpeedyKinematicModel : public KinematicModel {
+class CentaurKinematicModel : public KinematicModel {
 public:
-  SpeedyKinematicModel () : KinematicModel(4)
+  CentaurKinematicModel () : KinematicModel(4)
   {
-    const double x_nominal_b = 0.31;
-    const double y_nominal_b = 0.1; //fore-legs
-    const double z_nominal_b = -0.304*1.5;
+    const double x_nominal_fore_b = 0.1451;
+    const double x_nominal_hind_b = 0.407;
+    const double y_nominal_b = 0.3;
+    const double z_nominal_b = -0.59;
 
-    const double lateral_offset = 0.04;
+    nominal_stance_.at(LF) <<  x_nominal_fore_b,   y_nominal_b, z_nominal_b;
+    nominal_stance_.at(RF) <<  x_nominal_fore_b,  -y_nominal_b, z_nominal_b;
+    nominal_stance_.at(LH) << -x_nominal_hind_b,   y_nominal_b, z_nominal_b;
+    nominal_stance_.at(RH) << -x_nominal_hind_b,  -y_nominal_b, z_nominal_b;
 
-    nominal_stance_.at(LF) <<  x_nominal_b,   y_nominal_b, z_nominal_b;
-    nominal_stance_.at(RF) <<  x_nominal_b,  -y_nominal_b, z_nominal_b;
-    nominal_stance_.at(LH) << -x_nominal_b,   y_nominal_b + lateral_offset, z_nominal_b;
-    nominal_stance_.at(RH) << -x_nominal_b,  -(y_nominal_b + lateral_offset), z_nominal_b;
-
-    max_dev_from_nominal_ << 3*0.15, 0.02, 0.2;
+    max_dev_from_nominal_ << 0.18, 0.1, 0.2;
   }
 };
 
 /**
- * @brief The Dynamics of the quadruped class Speedy.
+ * @brief The Dynamics of the quadruped class Centaur.
  */
-class SpeedyDynamicModel : public SingleRigidBodyDynamics {
+class CentaurDynamicModel : public SingleRigidBodyDynamics {
 public:
-  SpeedyDynamicModel()
-  : SingleRigidBodyDynamics(22.52,
-                    0.32292948545, 1.6312604391327, 1.5468168891, 0, 0, 0.0001331150,
+  CentaurDynamicModel()
+  : SingleRigidBodyDynamics(50,
+                    7.014763669, 11.1750467036, 10.3181416108, 0, 2.4417105008, 0,
                     4) {}
 };
 
 } // namespace towr
 
-#endif /* TOWR_TOWR_ROS_INCLUDE_TOWR_ROS_SPEEDY_MODEL_H_ */
+#endif /* TOWR_TOWR_ROS_INCLUDE_TOWR_ROS_CENTAUR_MODEL_H_ */

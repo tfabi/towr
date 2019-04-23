@@ -20,16 +20,16 @@ ylabel('z position [m]');
 grid on
 
 subplot(5,2,2);
-plot(t, ts_base_twist.Data(:,1));
+plot(t, ts_base_vel.Data(:,1));
 ylabel('x velocity [m/s]');
 grid on
 title('Center of mass velocity')
 subplot(5,2,4);
-plot(t, ts_base_twist.Data(:,2));
+plot(t, ts_base_vel.Data(:,2));
 ylabel('y velocity [m/s]');
 grid on
 subplot(5,2,6);
-plot(t, ts_base_twist.Data(:,3));
+plot(t, ts_base_vel.Data(:,3));
 xlabel('time [s]');
 ylabel('z velocity [m/s]');
 grid on
@@ -40,11 +40,22 @@ subplot(5,2,[7, 8, 9, 10])
 % for flying trot
 %plot(t, ee_force_total_0, 'b', t, ee_force_total_1, 'g', t, ee_force_total_2, 'g', t, ee_force_total_3, 'b')
 % for walk
-plot(t, foot_0.force(:,3), 'b', t, foot_1.force(:,3), 'g', t, foot_2.force(:,3), 'r', t, foot_3.force(:,3), 'bl')
+plot(t, foot_LF.force(:,3), 'b', t, foot_RF.force(:,3), 'g', t, foot_LH.force(:,3), 'r', t, foot_RH.force(:,3), 'bl')
 title('End Effector forces');
 xlabel('time [s]')
 ylabel('end effector force [N]')
 grid on
+
+%%
+
+figure()
+plot(ts_base_pos.Data(:,1),ts_base_pos.Data(:,3), foot_LF.position(:,1), foot_LF.position(:,3), ...
+    t, foot_LH.position(:,3))
+
+
+figure()
+plot(t,ts_base_pos.Data(:,3), t, foot_LF.position(:,3), ...
+    t, foot_LH.position(:,3),t, foot_RF.position(:,3), t, foot_RH.position(:,3))
 
 %%  Generate pdf from the figure for paper
 % width  = 20;
