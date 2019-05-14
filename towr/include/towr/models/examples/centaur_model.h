@@ -63,7 +63,7 @@ public:
 class CentaurDynamicModel : public SingleRigidBodyDynamics {
 public:
   CentaurDynamicModel()
-  : SingleRigidBodyDynamics(50,
+  : SingleRigidBodyDynamics(80,
                     7.014763669, 11.1750467036, 10.3181416108, 0, 2.4417105008, 0,
                     4) {}
 };

@@ -45,7 +45,7 @@ Parameters::Parameters ()
   ee_polynomials_per_swing_phase_ = 2; // so step can at least lift leg  ... increase to add nodes to swing phase and prevent ee movement through step?
 
   // parameters related to specific constraints (only used when it is added as well)
-  force_limit_in_normal_direction_ = 2000;
+  force_limit_in_normal_direction_ = 5000; // increased for massivo and centaur classes
   dt_constraint_range_of_motion_ = 0.03; //was at 0.04
   dt_constraint_dynamic_ = 0.08; // was at 0.1
   dt_constraint_base_motion_ = duration_base_polynomial_/4.; // only for base RoM constraint

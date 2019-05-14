@@ -69,8 +69,8 @@ struct RobotModel {
    */
   enum Robot { Monoped, ///< one-legged hopper
                /*Biped,   ///< two-legged
-               Hyq,     ///< four-legged robot from IIT
-               Anymal,*/  ///< four-legged robot from Anybotics
+               Hyq,*/      ///< four-legged robot from IIT
+               Anymal, ///< four-legged robot from Anybotics
 	       Mini,    ///< small test platform quadruped
 	       Speedy,  ///< agile four-legged robot class
                Universal,
@@ -92,8 +92,8 @@ const static std::map<RobotModel::Robot, std::string> robot_names =
 {
   {RobotModel::Monoped, "Monoped"},
   /*{RobotModel::Biped,   "Biped"},
-  {RobotModel::Hyq,     "Hyq"},
-  {RobotModel::Anymal,  "Anymal"},*/
+  {RobotModel::Hyq,     "Hyq"}*/
+  {RobotModel::Anymal,  "Anymal"},
   {RobotModel::Mini, "Mini"},
   {RobotModel::Speedy,  "Speedy"},
   {RobotModel::Universal, "Universal"},

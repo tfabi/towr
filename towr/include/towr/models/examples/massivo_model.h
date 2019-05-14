@@ -62,7 +62,7 @@ public:
 class MassivoDynamicModel : public SingleRigidBodyDynamics {
 public:
   MassivoDynamicModel()
-  : SingleRigidBodyDynamics(50,
+  : SingleRigidBodyDynamics(80,
                     5.50700075378, 7.67040600154, 8.32126382468, 0, 0, 0,
                     4) {}
 };

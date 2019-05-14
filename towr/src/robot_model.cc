@@ -59,11 +59,11 @@ RobotModel::RobotModel(Robot robot)
     case Hyq:
       dynamic_model_   = std::make_shared<HyqDynamicModel>();
       kinematic_model_ = std::make_shared<HyqKinematicModel>();
-      break;
+      break;*/
     case Anymal:
       dynamic_model_   = std::make_shared<AnymalDynamicModel>();
       kinematic_model_ = std::make_shared<AnymalKinematicModel>();
-    */
+      break;
     case Mini:
       dynamic_model_   = std::make_shared<MiniDynamicModel>();
       kinematic_model_ = std::make_shared<MiniKinematicModel>();
