@@ -33,13 +33,15 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <towr/models/examples/biped_model.h>
 #include <towr/models/examples/hyq_model.h>
 #include <towr/models/examples/anymal_model.h>
-
 #include <towr/models/examples/mini_model.h>
 #include <towr/models/examples/speedy_model.h>
 #include <towr/models/examples/universal_model.h>
 #include <towr/models/examples/universalpayload_model.h>
 #include <towr/models/examples/massivo_model.h>
 #include <towr/models/examples/centaur_model.h>
+#include <towr/models/examples/vertex_model.h>
+#include <towr/models/examples/vitruvianbiped_model.h>
+#include <towr/models/examples/anymalbear_model.h>
 
 
 namespace towr {
@@ -52,17 +54,25 @@ RobotModel::RobotModel(Robot robot)
       dynamic_model_   = std::make_shared<MonopedDynamicModel>();
       kinematic_model_ = std::make_shared<MonopedKinematicModel>();
       break;
-    /*case Biped:
+    case VitruvianBiped:
+      dynamic_model_   = std::make_shared<VitruvianBipedDynamicModel>();
+      kinematic_model_ = std::make_shared<VitruvianBipedKinematicModel>();
+      break;
+    case Biped:
       dynamic_model_   = std::make_shared<BipedDynamicModel>();
       kinematic_model_ = std::make_shared<BipedKinematicModel>();
       break;
     case Hyq:
       dynamic_model_   = std::make_shared<HyqDynamicModel>();
       kinematic_model_ = std::make_shared<HyqKinematicModel>();
-      break;*/
+      break;
     case Anymal:
       dynamic_model_   = std::make_shared<AnymalDynamicModel>();
       kinematic_model_ = std::make_shared<AnymalKinematicModel>();
+      break;
+    case AnymalBear:
+      dynamic_model_   = std::make_shared<AnymalBearDynamicModel>();
+      kinematic_model_ = std::make_shared<AnymalBearKinematicModel>();
       break;
     case Mini:
       dynamic_model_   = std::make_shared<MiniDynamicModel>();
@@ -87,6 +97,10 @@ RobotModel::RobotModel(Robot robot)
     case Centaur:
       dynamic_model_   = std::make_shared<CentaurDynamicModel>();
       kinematic_model_ = std::make_shared<CentaurKinematicModel>();
+      break;
+    case Vertex:
+      dynamic_model_   = std::make_shared<VertexDynamicModel>();
+      kinematic_model_ = std::make_shared<VertexKinematicModel>();
       break;
     default:
       assert(false); // Error: Robot model not implemented.

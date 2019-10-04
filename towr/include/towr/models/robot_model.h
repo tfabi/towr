@@ -68,15 +68,18 @@ struct RobotModel {
    * @ingroup Robots
    */
   enum Robot { Monoped, ///< one-legged hopper
-               /*Biped,   ///< two-legged
-               Hyq,*/      ///< four-legged robot from IIT
+	       VitruvianBiped,
+               Biped,   ///< two-legged
+               Hyq,      ///< four-legged robot from IIT
                Anymal, ///< four-legged robot from Anybotics
+ 	       AnymalBear,
 	       Mini,    ///< small test platform quadruped
 	       Speedy,  ///< agile four-legged robot class
                Universal,
                UniversalPayload, ///< versatile four-legged robot
 	       Massivo,    ///< heavy payload-carrying four-legged robot
 	       Centaur,    ///< heavy payload at front of robot
+	       Vertex,    ///< heavy payload at front of robot
                ROBOT_COUNT };
 
 
@@ -90,16 +93,19 @@ struct RobotModel {
 
 const static std::map<RobotModel::Robot, std::string> robot_names =
 {
+  {RobotModel::VitruvianBiped, "VitruvianBiped"},
   {RobotModel::Monoped, "Monoped"},
-  /*{RobotModel::Biped,   "Biped"},
-  {RobotModel::Hyq,     "Hyq"}*/
+  {RobotModel::Biped,   "Biped"},
+  {RobotModel::Hyq,     "Hyq"},
   {RobotModel::Anymal,  "Anymal"},
-  {RobotModel::Mini, "Mini"},
+  {RobotModel::AnymalBear,  "AnymalBear"},
+  {RobotModel::Mini,    "Mini"},
   {RobotModel::Speedy,  "Speedy"},
   {RobotModel::Universal, "Universal"},
   {RobotModel::UniversalPayload, "UniversalPayload"},
   {RobotModel::Massivo, "Massivo"},
   {RobotModel::Centaur, "Centaur"},
+  {RobotModel::Vertex, "Vertex"},
 };
 
 } /* namespace towr */

@@ -1,0 +1,6 @@
+devel_space: /home/michael/git/towr/towr_ros/devel
+install: false
+install_space: /home/michael/git/towr/towr_ros/install
+profile: default
+source_space: /home/michael/git/towr/towr_ros/src
+workspace: /home/michael/git/towr/towr_ros

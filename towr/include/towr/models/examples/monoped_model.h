@@ -42,8 +42,8 @@ class MonopedKinematicModel : public KinematicModel {
 public:
   MonopedKinematicModel () : KinematicModel(1)
   {
-    nominal_stance_.at(0) = Eigen::Vector3d( 0.0, 0.0, -0.58);
-    max_dev_from_nominal_ << 0.25, 0.15, 0.2;
+    nominal_stance_.at(0) = Eigen::Vector3d( 0.0, 0.0, -0.228);
+    max_dev_from_nominal_ << 0.08, 0.03, 0.13;
   }
 };
 
@@ -53,8 +53,8 @@ public:
 class MonopedDynamicModel : public SingleRigidBodyDynamics {
 public:
   MonopedDynamicModel()
-  : SingleRigidBodyDynamics(20,                      // mass of the robot
-                    1.2, 5.5, 6.0, 0.0, -0.2, -0.01, // base inertia
+  : SingleRigidBodyDynamics(1.09519,                      // mass of the robot
+                    0.010582, 0.0048843, 0.011514, -0.001944, -0.0008045, 0.00243041, // base inertia
                     1) {}                            // number of endeffectors
 };
 

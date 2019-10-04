@@ -64,10 +64,10 @@ TowrUserInterface::TowrUserInterface ()
   user_command_pub_ = n.advertise<towr_ros::TowrCommand>(towr_msgs::user_command, 1);
 
   goal_geom_.lin.p_.setZero();
-  goal_geom_.lin.p_ << 2.1, 0.0, 0.0;
+  goal_geom_.lin.p_ << 2.1, 0.0, -0.2327-0.13; // position xyz 
   goal_geom_.ang.p_ << 0.0, 0.0, 0.0; // roll, pitch, yaw angle applied Z->Y'->X''
 
-  robot_      = RobotModel::Speedy;
+  robot_      = RobotModel::Monoped;
   terrain_    = HeightMap::FlatID;
   gait_combo_ = GaitGenerator::C0;
   total_duration_ = 2.4;
@@ -129,9 +129,10 @@ TowrUserInterface::PrintScreen() const
   wmove(stdscr, GOAL_POS, X_KEY);
   printw("arrows");
   wmove(stdscr, GOAL_POS, X_DESCRIPTION);
-  printw("Goal x-y");
+  printw("Goal x-y-z");
   wmove(stdscr, GOAL_POS, X_VALUE);
-  PrintVector2D(goal_geom_.lin.p_.topRows(2));
+  //PrintVector2D(goal_geom_.lin.p_.topRows(2));
+  PrintVector(goal_geom_.lin.p_); // Push up
   printw(" [m]");
 
   wmove(stdscr, GOAL_ORI, X_KEY);
@@ -184,15 +185,15 @@ TowrUserInterface::PrintScreen() const
   wmove(stdscr, CLOSE, X_VALUE);
   printw("-");
 
-  printw("\n\n Gait 0: walk 8 phases\n      1: flying trot 20 phases \n      2: pace 3 phases\n      "
-		  "3: bound 5 phases \n      4: gallop 30 phases \n      5: trot 20 phases \n      "
-		  "6: overlap walk 20 phases \n      7: trot 80 phases \n      8: pronk 10 phases");
+  printw("\n\n Gait 0: Walk 6 phases \n      1: flying trot 10 phases \n      2: trot 10 phases\n      "
+		  "3: push up \n      4: gallop 30 phases \n      5: pushup \n      "
+		  "6: overlap walk 20 phases \n      7: walk 16 phases \n    8: push up \n");
 }
 
 void
 TowrUserInterface::CallbackKey (int c)
 {
-  const static double d_lin = 0.1;  // [m]
+  const static double d_lin = 0.05;  // [m]
   const static double d_ang = 0.25; // [rad]
 
   switch (c) {

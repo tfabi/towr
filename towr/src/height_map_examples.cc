@@ -234,6 +234,17 @@ Stairwell::GetHeight (double x, double y) const
   if (x>=first_step_start_+width_first_step_+width_second_step_+width_third_step_+width_fourth_step_+width_fifth_step_)
       h = height_sixth_step;
 
+  if (x>=first_step_start_+width_first_step_+width_second_step_+width_third_step_+width_fourth_step_+width_fifth_step_+width_sixth_step_)
+      h = height_seventh_step;
+
+  if (x>=first_step_start_+width_first_step_+width_second_step_+width_third_step_+width_fourth_step_+width_fifth_step_+width_sixth_step_+width_seventh_step_)
+      h = height_eighth_step;
+
+  if (x>=first_step_start_+width_first_step_+width_second_step_+width_third_step_+width_fourth_step_+width_fifth_step_+width_sixth_step_+width_seventh_step_+width_eighth_step_)
+      h = height_ninth_step;
+  if (x>=first_step_start_+width_first_step_+width_second_step_+width_third_step_+width_fourth_step_+width_fifth_step_+width_sixth_step_+width_seventh_step_+width_eighth_step_+width_ninth_step_)
+      h = height_tenth_step;
+
   return h;
 }
 

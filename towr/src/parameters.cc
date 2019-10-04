@@ -41,20 +41,20 @@ Parameters::Parameters ()
 {
   // constructs optimization variables
   duration_base_polynomial_ = 0.1;
-  force_polynomials_per_stance_phase_ = 3;
+  force_polynomials_per_stance_phase_ = 4; // was 4
   ee_polynomials_per_swing_phase_ = 2; // so step can at least lift leg  ... increase to add nodes to swing phase and prevent ee movement through step?
 
   // parameters related to specific constraints (only used when it is added as well)
   force_limit_in_normal_direction_ = 5000; // increased for massivo and centaur classes
-  dt_constraint_range_of_motion_ = 0.03; //was at 0.04
-  dt_constraint_dynamic_ = 0.08; // was at 0.1
+  dt_constraint_range_of_motion_ = 0.08; //was at 0.08 , michael: 0.03
+  dt_constraint_dynamic_ = 0.1; // was at 0.1
   dt_constraint_base_motion_ = duration_base_polynomial_/4.; // only for base RoM constraint
   bound_phase_duration_ = std::make_pair(0.2, 1.0);  // used only when optimizing phase durations, so gait
 
   // a minimal set of basic constraints
   constraints_.push_back(Terrain);
   constraints_.push_back(Dynamic); //Ensures that the dynamic model is fullfilled at discrete times.
-  constraints_.push_back(BaseAcc); // so accelerations don't jump between polynomials
+  constraints_.push_back(BaseAcc); // so accelerations don't jump betweZn polynomials
   constraints_.push_back(EndeffectorRom); //Ensures that the range of motion is respected at discrete times.
   constraints_.push_back(Force); // ensures unilateral forces and inside the friction cone.
   constraints_.push_back(Swing); // creates smoother swing motions, not absolutely required.
@@ -63,7 +63,7 @@ Parameters::Parameters ()
   // costs_.push_back({ForcesCostID, 1.0}); weighed by 1.0 relative to other costs
 
   // bounds on final 6DoF base state
-  bounds_final_lin_pos_ = {X,Y};
+  bounds_final_lin_pos_ = {X,Y,Z};
   bounds_final_lin_vel_ = {X,Y,Z};
   bounds_final_ang_pos_ = {X,Y,Z};
   bounds_final_ang_vel_ = {X,Y,Z};

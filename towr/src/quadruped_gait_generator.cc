@@ -77,35 +77,34 @@ void
 QuadrupedGaitGenerator::SetCombo (Combos combo)
 {
   switch (combo) {
+    case C0: SetGaits({Stand, Walk1, Walk1, Walk1, Walk1, Walk1, Walk1, Stand}); break; // walk
+/*
     case C0: SetGaits({Stand,  Walk1, Walk1, Walk1, Walk1, Walk1, Walk1, Walk1, Walk1, Stand}); break; // walk
 
-    case C1: SetGaits({Stand, Run2, Run2, Run2, Run2, Run2, Run2, Run2, Run2, Run2, Run2,
-    	                      Run2, Run2, Run2, Run2, Run2, Run2, Run2, Run2, Run2, Run2, Run2E, Stand});     break; // fly trot
+    case C0: SetGaits({Stand,  Walk2, Walk2, Walk2, Walk2, Walk2, Walk2, Walk2, Walk2E, Stand}); break; // walk
+*/
 
-    case C2: SetGaits({Stand, Run3, Run3, Run3, Run3E, Stand}); break; // pace
+    case C1: SetGaits({Stand, Run2, Run2, Run2, Run2, Run2, Run2, Run2, Run2, Run2, Run2, Run2E, Stand});     break; // flying trot
 
-    case C3: SetGaits({Stand, Hop1, Hop1, Hop1, Hop1, Hop1, Hop1E, Stand}); break; // bound
+    case C2: SetGaits({Stand, Run1, Run1, Run1, Run1, Run1,  Run1, Run1, Run1, Run1, Run1, Run2E, Stand});     break; // trot used in ANYmal fast trot comparison
+
+    //case C2: SetGaits({Stand, Run1, Run1, Run1, Run1, Run1,  Run1, Run2E, Stand});     break; // trot
+
+    case C3: SetGaits({Stand}); break; // push up
 
     case C4: SetGaits({Stand, Hop3, Hop3, Hop3, Hop3, Hop3, Hop3, Hop3, Hop3, Hop3, Hop3,
 							  Hop3, Hop3, Hop3, Hop3, Hop3, Hop3, Hop3, Hop3, Hop3, Hop3,
 							  Hop3, Hop3, Hop3, Hop3, Hop3, Hop3, Hop3, Hop3, Hop3, Hop3, Hop3E, Stand}); break; // gallop
 
-    case C5: SetGaits({Stand, Run1, Run1, Run1, Run1, Run1, Run1, Run1, Run1, Run1, Run1,
-    	                      Run1, Run1, Run1, Run1, Run1, Run1, Run1, Run1, Run1, Run1, Run2E, Stand});     break; // trot
+    case C5: SetGaits({Stand});     break; // push up
 
     case C6: SetGaits({Stand, Walk2, Walk2, Walk2, Walk2, Walk2, Walk2, Walk2, Walk2, Walk2, Walk2,
     	                      Walk2, Walk2, Walk2, Walk2, Walk2, Walk2, Walk2, Walk2, Walk2, Walk2, Walk2E, Stand}); break; // walk for stair climb
 
-    case C7: SetGaits({Stand, Run1, Run1, Run1, Run1, Run1, Run1, Run1, Run1, Run1, Run1,
-    	                      Run1, Run1, Run1, Run1, Run1, Run1, Run1, Run1, Run1, Run1,
-							  Run1, Run1, Run1, Run1, Run1, Run1, Run1, Run1, Run1, Run1,
-							  Run1, Run1, Run1, Run1, Run1, Run1, Run1, Run1, Run1, Run1,
-							  Run1, Run1, Run1, Run1, Run1, Run1, Run1, Run1, Run1, Run1,
-							  Run1, Run1, Run1, Run1, Run1, Run1, Run1, Run1, Run1, Run1,
-							  Run1, Run1, Run1, Run1, Run1, Run1, Run1, Run1, Run1, Run1,
-							  Run1, Run1, Run1, Run1, Run1, Run1, Run1, Run1, Run1, Run1, Run2E, Stand});     break; // trot
+    case C7: SetGaits({Stand,  Walk1, Walk1, Walk1, Walk1, Walk1, Walk1, Walk1, Walk1, Walk1, Walk1,
+    	 	 	 	 	 	   Walk1, Walk1, Walk1, Walk1, Walk1, Walk1, Stand}); break; // walk
 
-    case C8: SetGaits({Stand, Hop2, Hop2, Hop2, Hop2, Hop2, Hop2, Hop2, Hop2, Hop2, Hop2, Hop1E, Stand}); break; // pace
+    case C8: SetGaits({Stand}); break; // push up
 
 
     default: assert(false); std::cout << "Gait not defined\n"; break;
@@ -142,7 +141,7 @@ QuadrupedGaitGenerator::GetStrideStand () const
 {
   auto times =
   {
-      0.3,
+      0.3, // default 0.3
   };
   auto contacts =
   {
@@ -246,6 +245,26 @@ QuadrupedGaitGenerator::GetStrideTrot () const
 
   return std::make_pair(times, phase_contacts);
 }
+
+/*
+QuadrupedGaitGenerator::GaitInfo
+QuadrupedGaitGenerator::GetStrideOverlapTrot () const
+{
+  double t_step = 0.32;
+  double t_overlap = 0.28;
+  double t_stand = 0.4;
+  auto times =
+  {
+      t_step, t_overlap, t_stand, t_overlap, t_step, t_overlap, t_stand, t_overlap
+  };
+  auto phase_contacts =
+  {
+      bP_, BB_, Pb_, BB_,
+  };
+
+  return std::make_pair(times, phase_contacts);
+}
+*/
 
 QuadrupedGaitGenerator::GaitInfo
 QuadrupedGaitGenerator::GetStrideTrotFly () const

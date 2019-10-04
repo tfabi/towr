@@ -77,10 +77,10 @@ public:
 
 private:
   double first_step_start_  = 1.0;
-  double first_step_width_  = 0.4;
-  double height_first_step  = 0.2;
-  double height_second_step = 0.4;
-  double width_top = 4.0;
+  double first_step_width_  = 0.28;
+  double height_first_step  = 0.17;
+  double height_second_step = 2*0.17;
+  double width_top = 20.0;
 };
 
 /**
@@ -178,6 +178,9 @@ private:
   double height_fifth_step = 5*0.17;
   double height_sixth_step = 6*0.17;
   double height_seventh_step = 7*0.17;
+  double height_eighth_step = 8*0.17;
+  double height_ninth_step = 9*0.17;
+  double height_tenth_step = 10*0.17;
 
   double width_first_step_  = 0.28;
   double width_second_step_  = 0.28;
@@ -185,7 +188,9 @@ private:
   double width_fourth_step_  = 0.28;
   double width_fifth_step_  = 0.28;
   double width_sixth_step_  = 0.28;
-
+  double width_seventh_step_  = 0.28;
+  double width_eighth_step_  = 0.28;
+  double width_ninth_step_  = 0.28;
   double width_top = 4.0;
 }; 
 
