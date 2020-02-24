@@ -78,14 +78,14 @@ QuadrupedGaitGenerator::SetCombo (Combos combo)
 {
   
   switch (combo) {
-    case C0: buildGaitSeq(Walk2, Walk2E, 6); break; // overlap-walk
-    case C1: buildGaitSeq(Run2, Run2E, 6); break; // // fly trot
-    case C2: buildGaitSeq(Run3, Run3E, 6); break; // pace
-    case C3: buildGaitSeq(Hop1, Hop1E, 6); break; // bound
-    case C4: buildGaitSeq(Hop3, Hop3E, 6); break; // gallop
-    case C5: buildGaitSeq(Walk1, Stand, 8); break; // walk (normal) added
-    case C6: buildGaitSeq(Run1, Stand, 8); break; // trot added
-    case C7: buildGaitSeq(Hop2, Stand, 8); break; // pronk added
+    case C0: buildGaitSeq(Walk2, Walk2E, 12); break; // overlap-walk
+    case C1: buildGaitSeq(Run2, Run2E, 12); break; // // fly trot
+    case C2: buildGaitSeq(Run3, Run3E, 12); break; // pace
+    case C3: buildGaitSeq(Hop1, Hop1E, 12); break; // bound
+    case C4: buildGaitSeq(Hop3, Hop3E, 12); break; // gallop
+    case C5: buildGaitSeq(Walk1, Stand, 16); break; // walk (normal) added
+    case C6: buildGaitSeq(Run1, Stand, 16); break; // trot added
+    case C7: buildGaitSeq(Hop2, Stand, 16); break; // pronk added
     default: assert(false); std::cout << "Gait not defined\n"; break;
   }
 }

@@ -43,7 +43,7 @@ class MinimalKinematicModel : public KinematicModel {
 public:
   MinimalKinematicModel () : KinematicModel(4)
   {
-    const double x_nominal_b = 0.18;
+    const double x_nominal_b = 0.15;
     const double y_nominal_b = 0.075;
     const double z_nominal_b = -0.2;
 
@@ -52,7 +52,7 @@ public:
     nominal_stance_.at(LH) << -x_nominal_b,   y_nominal_b, z_nominal_b;
     nominal_stance_.at(RH) << -x_nominal_b,  -y_nominal_b, z_nominal_b;
 
-    max_dev_from_nominal_ << 0.075, 0.075, 0.1;
+    max_dev_from_nominal_ << 0.075, 0.075, 0.075;
   }
 };
 
@@ -63,7 +63,7 @@ class MinimalDynamicModel : public SingleRigidBodyDynamics {
 public:
   MinimalDynamicModel()
   : SingleRigidBodyDynamics(3.0,
-                    0.018442, 0.043582, 0.049515, 0, 0, 0,
+                    0.017712, 0.04099, 0.047653, 0, 0, 0,
                     4) {}
 };
 
