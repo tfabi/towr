@@ -62,6 +62,8 @@ private:
   GaitInfo GetStridePronk() const;
   GaitInfo GetStrideLimp() const;
 
+  void buildGaitSeq(Gaits gait, Gaits endinggait, unsigned int n_seqs);
+
   void SetCombo(Combos combo) override;
 
 

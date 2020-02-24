@@ -76,14 +76,31 @@ QuadrupedGaitGenerator::QuadrupedGaitGenerator ()
 void
 QuadrupedGaitGenerator::SetCombo (Combos combo)
 {
+  
   switch (combo) {
-    case C0: SetGaits({Stand, Walk2, Walk2, Walk2, Walk2E, Stand}); break; // overlap-walk
-    case C1: SetGaits({Stand, Run2, Run2, Run2, Run2E, Stand});     break; // fly trot
-    case C2: SetGaits({Stand, Run3, Run3, Run3, Run3E, Stand}); break; // pace
-    case C3: SetGaits({Stand, Hop1, Hop1, Hop1, Hop1E, Stand}); break; // bound
-    case C4: SetGaits({Stand, Hop3, Hop3, Hop3, Hop3E, Stand}); break; // gallop
+    case C0: buildGaitSeq(Walk2, Walk2E, 6); break; // overlap-walk
+    case C1: buildGaitSeq(Run2, Run2E, 6); break; // // fly trot
+    case C2: buildGaitSeq(Run3, Run3E, 6); break; // pace
+    case C3: buildGaitSeq(Hop1, Hop1E, 6); break; // bound
+    case C4: buildGaitSeq(Hop3, Hop3E, 6); break; // gallop
+    case C5: buildGaitSeq(Walk1, Stand, 8); break; // walk (normal) added
+    case C6: buildGaitSeq(Run1, Stand, 8); break; // trot added
+    case C7: buildGaitSeq(Hop2, Stand, 8); break; // pronk added
     default: assert(false); std::cout << "Gait not defined\n"; break;
   }
+}
+
+void QuadrupedGaitGenerator::buildGaitSeq(Gaits gait, Gaits endinggait, unsigned int n_seqs){
+  std::vector<Gaits> gait_seq{Stand, Stand};
+  
+  for (int j = 0; j < n_seqs; ++j) {
+    gait_seq.insert(gait_seq.begin()+1, gait);
+  }
+  if(endinggait!=0){
+    gait_seq.insert(gait_seq.end()-1, endinggait);
+  }
+  SetGaits(gait_seq);
+
 }
 
 QuadrupedGaitGenerator::GaitInfo
