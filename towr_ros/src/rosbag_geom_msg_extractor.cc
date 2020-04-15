@@ -52,40 +52,46 @@ int main(int argc, char *argv[])
     return 0;
   }
 
-  std::string bag_file = argv[1];
-
-  rosbag::Bag bag_r;
-  bag_r.open(bag_file, rosbag::bagmode::Read);
-  std::cout << "Reading from bag " + bag_r.getFileName() << std::endl;
-
-  // select which iterations (message topics) to be included in bag file
-  std::string topic = "/xpp/state_des";
-  rosbag::View view(bag_r, rosbag::TopicQuery(topic));
-  if (view.size() == 0) {
-    std::cerr << "Error: Topic " << topic << " doesn't exist\n";
-    return 0;
-  }
-
-  // write the message with modified timestamp into new bag file
-  rosbag::Bag bag_w;
-  bag_w.open("/home/winklera/Desktop/matlab_rdy.bag", rosbag::bagmode::Write);
-
-  BOOST_FOREACH(rosbag::MessageInstance const m, view)
+  for (int i = 1; i < argc; i++)
   {
-    ros::Time t = m.getTime();
-    auto state_msg = m.instantiate<xpp_msgs::RobotStateCartesian>();
-    bag_w.write("base_pose", t, state_msg->base.pose);
-    bag_w.write("base_acc", t, state_msg->base.accel.linear);
+    std::string bag_file = argv[i];
+    //std::cout << "Reading from bag " + bag_file << std::endl;
 
-    int n_feet = state_msg->ee_motion.size();
+    rosbag::Bag bag_r;
+    bag_r.open(bag_file, rosbag::bagmode::Read);
+    std::cout << "Reading from bag " + bag_r.getFileName() << std::endl;
 
-    for (int i=0; i<n_feet; ++i) {
-      bag_w.write("foot_pos_"+std::to_string(i), t, state_msg->ee_motion.at(i).pos);
-      bag_w.write("foot_force_"+std::to_string(i), t, state_msg->ee_forces.at(i));
+    // select which iterations (message topics) to be included in bag file
+    std::string topic = "/xpp/state_des";
+    rosbag::View view(bag_r, rosbag::TopicQuery(topic));
+    if (view.size() == 0) {
+      std::cerr << "Error: Topic " << topic << " doesn't exist\n";
+      return 0;
     }
-  }
 
-  bag_r.close();
-  std::cout << "Successfully created bag " + bag_w.getFileName() << std::endl;
-  bag_w.close();
+    // write the message with modified timestamp into new bag file
+    rosbag::Bag bag_w;
+    std::string outputFileName = bag_file.substr(0,bag_file.size()-4) + "_matlab.bag";
+
+    bag_w.open(outputFileName, rosbag::bagmode::Write);
+
+    BOOST_FOREACH(rosbag::MessageInstance const m, view)
+    {
+      ros::Time t = m.getTime();
+      auto state_msg = m.instantiate<xpp_msgs::RobotStateCartesian>();
+      bag_w.write("base_pose", t, state_msg->base.pose);
+      bag_w.write("base_acc", t, state_msg->base.accel.linear);
+
+      int n_feet = state_msg->ee_motion.size();
+
+      for (int i=0; i<n_feet; ++i) {
+        bag_w.write("foot_pos_"+std::to_string(i), t, state_msg->ee_motion.at(i).pos);
+        bag_w.write("foot_force_"+std::to_string(i), t, state_msg->ee_forces.at(i));
+      }
+    }
+
+    bag_r.close();
+    std::cout << "Successfully created bag " + bag_w.getFileName() << std::endl;
+    bag_w.close();
+  }
 }
